@@ -1,7 +1,7 @@
 WikiRaceSprinter
 ================
 
-Solve [Wikipedia Race](http://www.wikipediarace.com/)
+Solve [Wikipedia Race](http://en.wikipedia.org/wiki/Wikipedia:Wikirace)
 
 ##Usage##
 	usage: WikiRaceSolver.py [-h] -m [MAX] source target
