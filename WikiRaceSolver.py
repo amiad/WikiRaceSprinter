@@ -39,7 +39,7 @@ class WikiSolver:
 		linksList = []
 		for a in soup.findAll('a'):
 			link = a.get('href')
-			if not link is None and link.startswith(self.urlPrefix) and not link[len(self.urlPrefix):].startswith(self.excludeWikiPrefix) and not link in linksList: 
+			if not link is None and link.startswith(self.urlPrefix) and not self.getName(link).startswith(self.excludeWikiPrefix) and not link in linksList: 
 				linksList.append(link)
 		return linksList
 		
@@ -62,6 +62,8 @@ class WikiSolver:
 		if self.getName(url) == self.getName(self.target):
 			stepsList.append(self.getName(url))
 			return stepsList
+		elif self.getName(url) in stepsList:
+			return False
 		elif stepsLeft == 0: 
 			return False
 		else:
