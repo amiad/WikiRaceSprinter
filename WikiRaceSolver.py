@@ -12,6 +12,8 @@ class WikiSolver:
 		self.target = args.target
 		self.max = int(args.max)
 		
+		self.scannedLinks = set()
+		
 		solve = self.solve(self.source, self.max)
 		if not solve: print 'Not Found Solve'
 		else:
@@ -39,7 +41,7 @@ class WikiSolver:
 		linksList = []
 		for a in soup.findAll('a'):
 			link = a.get('href')
-			if not link is None and link.startswith(self.urlPrefix) and not self.getName(link).startswith(self.excludeWikiPrefix) and not link in linksList: 
+			if not link is None and link.startswith(self.urlPrefix) and not self.getName(link).startswith(self.excludeWikiPrefix) and not link in self.scannedLinks and not link in linksList:
 				linksList.append(link)
 		return linksList
 		
@@ -71,6 +73,7 @@ class WikiSolver:
 			for link in linksList:
 				mySteps = list(stepsList)
 				mySteps.append(self.getName(url))
+				self.scannedLinks.add(link)
 				steps = self.solve(link, stepsLeft - 1, mySteps)
 				if steps: return steps
 			return False
