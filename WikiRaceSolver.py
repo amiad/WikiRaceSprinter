@@ -14,10 +14,11 @@ class WikiSolver:
 		self.file = args.file if args.file != None else False
 		self.verbose = args.verbose
 
-		if self.file:
+		if not self.file:
 			self.scannedLinks = set()
 		else:
-			self.scannedLinks = set(item.strip() for item in open(self.file))
+			self.scannedLinks = set(item.strip() for item in self.file)
+		print(self.scannedLinks)
 
 		solve = self.solve(self.source, self.max)
 		if self.verbose: print("*****")
@@ -88,6 +89,7 @@ class WikiSolver:
 				steps = self.solve(link, stepsLeft - 1, mySteps)
 				if steps: return steps
 			return False
+
 	def addScannedLinks(self, link):
 		self.scannedLinks.add(link)
 		if self.file:
