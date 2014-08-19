@@ -4,7 +4,7 @@ from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
 
 class WikiSolver:
-	excludeWikiPrefix = ('Wikipedia:', 'Special:', 'Talk:', 'Category:', 'Help:', 'Portal:', 'File:', 'List_')
+	excludeWikiPrefix = ('Wikipedia:', 'Special:', 'Talk:', 'Category:', 'Help:', 'Portal:', 'File:', 'List_', 'Template:', 'Template_talk:', 'User:')
 	urlPrefix = '/wiki/'
 	def __init__(self):
 		args = self.parser()
