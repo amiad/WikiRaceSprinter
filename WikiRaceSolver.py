@@ -11,7 +11,7 @@ class WikiSolver:
 		self.source = args.source
 		self.target = args.target
 		self.max = int(args.max)
-		self.file = args.file if args.file != None else False
+		self.file = args.file if args.file is not None else False
 		self.verbose = args.verbose
 
 		if not self.file:
