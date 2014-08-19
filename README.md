@@ -15,6 +15,7 @@ Solve [Wikipedia Race](http://en.wikipedia.org/wiki/Wikipedia:Wikirace)
 	optional arguments:
 	  -h, --help            show this help message and exit
 	  -m [MAX], --max [MAX]
+                        	maximum steps
 	  -f FILE, --file FILE  file for resume
 	  -v, --verbose         print progress
 ##Dependencies##
