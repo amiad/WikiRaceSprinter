@@ -18,7 +18,6 @@ class WikiSolver:
 			self.scannedLinks = set()
 		else:
 			self.scannedLinks = set(item.strip() for item in self.file)
-		print(self.scannedLinks)
 
 		solve = self.solve(self.source, self.max)
 		if self.verbose: print("*****")
