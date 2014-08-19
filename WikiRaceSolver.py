@@ -55,7 +55,9 @@ class WikiSolver:
 
 	def getName(self, url):
 		# get name from url
-		return url.rpartition('/')[2]
+		name = url.rpartition('/')[2]
+		name = name.rpartition('#')[0]
+		return name
 
 	def fullUrl(self, url):
 		if url.startswith('http'): return url
