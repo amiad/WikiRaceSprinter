@@ -49,14 +49,14 @@ class WikiSolver:
 		linksList = []
 		for a in soup.findAll('a'):
 			link = a.get('href')
-			if not link is None and link.startswith(self.urlPrefix) and not self.getName(link).startswith(self.excludeWikiPrefix) and not link in self.scannedLinks and not link in linksList:
+			if not link is None and link.startswith(self.urlPrefix) and not self.getName(link).startswith(self.excludeWikiPrefix) and not self.getName(link) in self.scannedLinks and not link in linksList:
 				linksList.append(link)
 		return linksList
 
 	def getName(self, url):
 		# get name from url
 		name = url.rpartition('/')[2]
-		name = name.rpartition('#')[0]
+		name = name.partition('#')[0] # remove anchor
 		return name
 
 	def fullUrl(self, url):
@@ -92,9 +92,10 @@ class WikiSolver:
 			return False
 
 	def addScannedLinks(self, link):
-		self.scannedLinks.add(link)
+		name = self.getName(link)
+		self.scannedLinks.add(name)
 		if self.file:
-			self.file.write(link + "\n")
+			self.file.write(name + "\n")
 			self.file.flush()
 
 wiki = WikiSolver()
