@@ -5,7 +5,7 @@ from BeautifulSoup import BeautifulSoup
 
 class WikiSolver:
 	excludeWikiPrefix = ('Wikipedia:', 'Special:', 'Talk:', 'Category:', 'Help:', 'Portal:', 'File:', 'List_', 'Template:', 'Template_talk:', 'User:',
-						"ויקיפדיה:", "מיוחד:", "שיחה:", "קטגוריה:", "עזרה:", "פורטל:", "קובץ:", "תבנית:", "תבנית–שיחה:", "משתמש:")
+						)
 	urlPrefix = '/wiki/'
 	def __init__(self):
 		args = self.parser()
@@ -58,6 +58,10 @@ class WikiSolver:
 		# get name from url
 		name = url.rpartition('/')[2]
 		name = name.partition('#')[0] # remove anchor
+		return name
+
+	def fixName(self, name): # not work
+		name = urllib2.unquote(name)
 		return name
 
 	def fullUrl(self, url):
